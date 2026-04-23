@@ -12,5 +12,7 @@ gs4_deauth()
 # Leo el archivo y almaceno los datos en un data frame
 datos <- read_sheet(url, skip = 2)
 
+#comentario para testear push
+
 # Veo la estructura del dataset
 str(datos)
