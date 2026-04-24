@@ -19,6 +19,20 @@ grafico_poblacion <- ggplot(datos_limpios,
     y = "Region continental"
   )
 
+
+#############################################
+# Histograma para indice global GIRAI # (cuantitativo continuo)
+#############################################
+
+grafico_girai_dist <- ggplot(datos_limpios) +
+  aes(x = GIRAI) +
+  geom_histogram(fill = "pink", col = "black", bins = 15) + 
+  scale_x_continuous(breaks = seq(0, 100, 10)) + # Marcas del eje cada 10 puntos
+  labs(x = "Puntaje Global GIRAI (0-100)", y = "Cantidad de países") +
+  ggtitle("Distribución global de los índices GIRAI") +
+  theme_classic()
+
+
 ##############################################
 # Grafico de barra niv. de marcos normativos # (categorico ordinal)
 ##############################################
@@ -57,7 +71,8 @@ grafico_discreta <- ggplot(datos_limpios) +
   aes(x = areas_mng) + 
   geom_bar(width = 0.10, fill = "black") +
   scale_x_continuous(breaks = seq(1, 20, 1)) + 
-  labs(y = "Cantidad de países", x = "Áreas temáticas reguladas (0 a 19)") +
+  labs(y = "Cantidad de países",
+       x = "Áreas temáticas reguladas (0 a 19)") +
   ggtitle("Distribución de cantidad de areas tematicas por 
     pais destinadas a la IA relacionado al MGN") +
   theme_classic()
@@ -69,8 +84,24 @@ grafico_discreta <- ggplot(datos_limpios) +
 grafico_continua <- ggplot(datos_limpios)+
   aes(x = mng)+
   geom_histogram(fill = "gray", col = "black", bins = 10)+
-  labs(x = "Puntaje de Marcos Normativos (0-100)", y = "Cantidad de paises")+
+  labs(
+    x = "Puntaje de Marcos Normativos (0-100)",
+    y = "Cantidad de paises")+
   ggtitle("Distribucion de los puntajes de los Marcos Nacionales 
     Gubernamentales con respecto al uso responsable de la IA")+
   theme_classic()
 
+#############################################
+# Grafico de barra para #areas con influencia privada (cuantitativo discreto)
+#############################################
+
+grafico_areas_ane <- ggplot(datos_limpios) +
+  aes(x = areas_ane) + 
+  geom_bar(width = 0.10, fill = "black") + 
+  scale_x_continuous(breaks = seq(0, 20, 1)) + 
+  labs(
+    x = "Cantidad de áreas con privados involucrados (0 a 19)", 
+    y = "Cantidad de países"
+  ) +
+  ggtitle("Distribución de países según cantidad de áreas con participación privada") +
+  theme_classic()

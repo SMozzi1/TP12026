@@ -6,21 +6,20 @@ library(ggplot2)
 attach(datos_limpios)
 
 ##################################################
-# Grafico de barra marcos normativos vs academia # (categorica vs categorica)
+# Grafico de barras sector priv y academia # (categorica vs categorica)
 ##################################################
-grafico_cat_cat <- datos_limpios %>%
-  ggplot() +
-  aes(x = sec_mng, fill = academia) +
-  geom_bar(position = "fill", color = "black") +
+grafico_cat_cat <- ggplot(datos_limpios) + 
+  aes(x = academia, fill = privado) +
+  geom_bar(position = "fill", color = "black", width = 0.6) + 
   scale_y_continuous(labels = scales::percent) +
+  scale_fill_manual(values = c("No" = "pink", "Sí" = "forestgreen")) +
   labs(
-    x = "Nivel de Marcos Normativos (Leyes)",
-    y = "Proporcion de paises",
-    fill = "¿Hay academia?"
+    x = "¿Hay Academia orientada a la IA?", 
+    y = "Proporción de países", 
+    fill = "¿Hay Privados?"
   ) +
-  ggtitle("Presencia de academia segun nivel de desarrollo legal") +
+  ggtitle("Proporcion: Academia y Sector Privado") +
   theme_classic()
-  
 grafico_cat_cat
 
 ################################################################
