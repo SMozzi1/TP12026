@@ -45,7 +45,11 @@ grafico_discreta <- ggplot(datos_limpios) +
   ggtitle("Áreas reguladas por país") +
   theme_classic()
 
-grafico_discreta
-grafico_resp_multiple
-grafico_ordinal
-grafico_poblacion
+# histograma para indice de marco normativo
+grafico_continua <- ggplot(datos_limpios)+
+  aes(x = mng)+
+  geom_histogram(fill = "gray", col = "black", bin = 15)+
+  labs(x = "Puntaje de Marcos Normativos (0-100)", y = "Cantidad de paises")+
+  ggtitle("Distribucion de la fuerza legislativa")+
+  theme_classic()
+
