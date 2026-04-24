@@ -5,6 +5,7 @@ library(ggplot2)
 # me traigo los datos
 attach(datos_limpios)
 
+
 ################################################################
 # Grafico de barra dist. paises por cont. (categorico nominal) #
 ################################################################
@@ -36,13 +37,18 @@ grafico_ordinal <- ggplot(datos_limpios)+
 ########################################
 
 grafico_resp_multiple <- ggplot(tabla_tipo_iniciativa_acade) + 
-  # Usamos reorder para que queden ordenadas por frecuencia
-  aes(x = reorder(`Tipo de Iniciativa`, `Cantidad con esta iniciativa`), y = `Cantidad con esta iniciativa`) +  
-  geom_bar(stat = "identity", width = 0.75, fill = "green", col = "black") +
+  
+  aes(x = reorder(str_wrap(`Tipo de Iniciativa`, width = 30), `Cantidad con esta iniciativa`), 
+      y = `Cantidad con esta iniciativa`) +  
+  
+  geom_bar(stat = "identity", width = 0.75, fill = "lightblue", col = "black", alpha = 0.6) +
   labs(y = "Cantidad de iniciativas", x = "Tipo de Iniciativa") +
-  ggtitle("Iniciativas Académicas") +
+  ggtitle("Distribucion de las iniciativas Académicas") +
   coord_flip() + 
-  theme_classic()
+  theme_classic() +
+  
+  theme(axis.text.y = element_text(size = 8)) 
+
 
 ##################################################
 # Grafico de barra para areas reguladas por pais # (cuantitativo discreto)
