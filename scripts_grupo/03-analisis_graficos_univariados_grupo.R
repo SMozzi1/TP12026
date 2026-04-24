@@ -14,10 +14,10 @@ grafico_poblacion <- ggplot(datos_limpios,
   theme_minimal()+
   labs(
     title = "Distribucion de cantidad de paises por continente",
-    subtitle = "Total de 138 paises segun el estandar M49 de Naciones Unidas",
     x = "Cantidad de paises",
     y = "Region continental"
   )
+grafico_poblacion
 
 ##############################################
 # Grafico de barra niv. de marcos normativos # (categorico ordinal)
