@@ -5,7 +5,9 @@ library(ggplot2)
 # me traigo los datos
 attach(datos_limpios)
 
-#grafico de barras distribucion de paises por continente
+###########################################
+# Grafico de barra dist. paises por cont. #
+###########################################
 grafico_poblacion <- ggplot(datos_limpios, 
                             aes(y = fct_infreq(NU_region)))+
   geom_bar(fill = "red", color = "black", alpha = 0.8)+
@@ -17,7 +19,9 @@ grafico_poblacion <- ggplot(datos_limpios,
     y = "Region continental"
   )
 
-#grafico de barras nivel de marcos normativos
+##############################################
+# Grafico de barra niv. de marcos normativos #
+##############################################
 grafico_ordinal <- ggplot(datos_limpios)+
   aes(x = sec_mng)+
   geom_bar(width = 0.75, fill = "blue", col = "black", alpha = 0.8)+
@@ -25,7 +29,9 @@ grafico_ordinal <- ggplot(datos_limpios)+
   ggtitle("Nivel de desarrollo legal")+
   theme_classic()
 
-#grafico de barras para respuesta multiple
+########################################
+# Grafico de barra tipos de iniciativa #
+########################################
 
 grafico_resp_multiple <- ggplot(tabla_tipo_iniciativa_acade) + 
   # Usamos reorder para que queden ordenadas por frecuencia
@@ -36,7 +42,9 @@ grafico_resp_multiple <- ggplot(tabla_tipo_iniciativa_acade) +
   coord_flip() + 
   theme_classic()
 
-#grafico de bastones para cuantitativa discreta
+##################################################
+# Grafico de barra para areas reguladas por pais #
+##################################################
 grafico_discreta <- ggplot(datos_limpios) +
   aes(x = areas_mng) + 
   geom_bar(width = 0.10, fill = "black") +
@@ -45,7 +53,10 @@ grafico_discreta <- ggplot(datos_limpios) +
   ggtitle("Áreas reguladas por país") +
   theme_classic()
 
-# histograma para indice de marco normativo
+#############################################
+# Histograma para indice de marco normativo #
+#############################################
+
 grafico_continua <- ggplot(datos_limpios)+
   aes(x = mng)+
   geom_histogram(fill = "gray", col = "black", bins = 10)+
