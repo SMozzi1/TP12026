@@ -37,5 +37,8 @@ grafico_cont_cont <- ggplot(datos_limpios) +
 
 grafico_cont_cont
 
+################################################################
+# Diagrama de dispersión  fuerza de la ley vs puntaje de girai #
+################################################################
 
   
