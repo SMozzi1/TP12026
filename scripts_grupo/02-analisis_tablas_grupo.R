@@ -42,7 +42,7 @@ tabla_tipo_iniciativa_acade <- datos_limpios %>%
   filter(academia == "Sí") %>%
   tabyl(tipo_academia_es) %>%
   arrange(desc(n)) %>%
-  adorn_pct_formatting(digits = 1)%>%
+  adorn_pct_formatting(digits = 1) %>%
   rename("Tipo de Iniciativa" = tipo_academia_es, "Cantidad con esta iniciativa" = n, "% del total" = percent)
 
 #table para variable de respuesta multiple (tipo de iniciativa privado)
@@ -51,7 +51,14 @@ tabla_tipo_iniciativa_priv <- datos_limpios %>%
   filter(privado == "Sí") %>%
   tabyl(tipo_privado_es) %>%
   arrange(desc(n)) %>%
+  adorn_totals("row") %>%
   adorn_pct_formatting(digits = 1)%>%
   rename("Tipo de Iniciativa" = tipo_privado_es, "Cantidad con esta iniciativa" = n, "% del total" = percent)
 
-
+#table de contingencia (academia vs areas marco)
+tabla_cruzada <- datos_limpios %>%
+  tabyl(academia, sec_mng) %>%
+  adorn_totals(c("row", "col")) %>%
+  adorn_percentages("row") %>%
+  adorn_pct_formatting(digits = 1) %>%
+  adorn_ns()
