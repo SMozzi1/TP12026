@@ -8,7 +8,7 @@ attach(datos_limpios)
 #grafico de barras distribucion de paises por continente
 grafico_poblacion <- ggplot(datos_limpios, 
                             aes(y = fct_infreq(NU_region)))+
-  geom_bar(fill = "red", color = "black", alpha=0.8)+
+  geom_bar(fill = "red", color = "black", alpha = 0.8)+
   theme_minimal()+
   labs(
     title = "Poblacion del Estudio: Distribucion por continente",
@@ -48,7 +48,7 @@ grafico_discreta <- ggplot(datos_limpios) +
 # histograma para indice de marco normativo
 grafico_continua <- ggplot(datos_limpios)+
   aes(x = mng)+
-  geom_histogram(fill = "gray", col = "black", bin = 15)+
+  geom_histogram(fill = "gray", col = "black", bins = 10)+
   labs(x = "Puntaje de Marcos Normativos (0-100)", y = "Cantidad de paises")+
   ggtitle("Distribucion de la fuerza legislativa")+
   theme_classic()
