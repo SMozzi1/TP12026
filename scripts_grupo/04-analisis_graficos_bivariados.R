@@ -37,26 +37,23 @@ grafico_cont_cont <- ggplot(datos_limpios) +
 
 grafico_cont_cont
 
-#####################################################
-# Grafico de barras de academia vs puntaje de GIRAI #
-#####################################################
+######################################################
+# Boxplot de presencia de academia vs Puntaje GIRAI  # (cat vs cont)
+######################################################
 
-# Usamos la tubería para agrupar y calcular el promedio solo para el gráfico
-grafico_cat_cont <- ggplot(datos) +
-  aes(x = academia, y = GIRAI) +
-  geom_boxplot(outlier.shape = NA, fill = "lightgray") + # Ocultamos los outliers de la caja porque ya los va a dibujar el jitter
-  theme_classic()
+grafico_cat_cuant <- ggplot(datos_limpios) +
+  
+  aes(x = academia, y = GIRAI, fill = academia) + 
+  geom_boxplot(show.legend = FALSE, width = 0.9, alpha = 0.7) + 
+  scale_y_continuous(breaks = seq(0, 100, 10)) +
+  
+  labs(
+    x = "¿Hay Academia orientada a la IA?", 
+    y = "Puntaje Global GIRAI (0-100)"
+  ) +
+  coord_flip()+
+  ggtitle("Distribución del éxito global según actividad académica") +
+  theme_light()
 
-grafico_cat_cont
-
-
-grafico_cat_cont_crestas <- ggplot(datos_limpios) +
-  aes(x = GIRAI, y = academia, fill = academia) +
-  geom_density_ridges() +
-  theme_ridges() + 
-  theme(legend.position = "none") +
-  labs(x = "Puntaje Global GIRAI (0-100)",
-       y = "¿Hay academia activa?")
-
-grafico_cat_cont_crestas
+grafico_cat_cuant
   
