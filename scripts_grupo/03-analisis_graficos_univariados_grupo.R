@@ -90,18 +90,3 @@ grafico_continua <- ggplot(datos_limpios)+
   ggtitle("Distribucion de los puntajes de los Marcos Nacionales 
     Gubernamentales con respecto al uso responsable de la IA")+
   theme_classic()
-
-#############################################
-# Grafico de barra para #areas con influencia privada (cuantitativo discreto)
-#############################################
-
-grafico_areas_ane <- ggplot(datos_limpios) +
-  aes(x = areas_ane) + 
-  geom_bar(width = 0.10, fill = "black") + 
-  scale_x_continuous(breaks = seq(0, 20, 1)) + 
-  labs(
-    x = "Cantidad de áreas con privados involucrados (0 a 19)", 
-    y = "Cantidad de países"
-  ) +
-  ggtitle("Distribución de países según cantidad de áreas con participación privada") +
-  theme_classic()

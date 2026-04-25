@@ -9,7 +9,7 @@ datos_limpios <- datos %>% #usamos la pipeline para asignar el resultado
                             # de una operacion
   
 # nos quedamos con las columnas de interes
-  select(academia, sec_mng, tipo_academia_es, areas_mng, mng, areas_ane, ane, GIRAI
+  select(academia, sec_mng, tipo_academia_es, areas_mng, mng, ane, GIRAI
          , NU_region, Pais, privado, tipo_privado_es)
     
 # Definimos el orden jerárquico de la variable ordinal sec_mng

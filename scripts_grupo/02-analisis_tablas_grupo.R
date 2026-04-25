@@ -62,11 +62,3 @@ tabla_cruzada <- datos_limpios %>%
   adorn_percentages("row") %>%
   adorn_pct_formatting(digits = 1) %>%
   adorn_ns()
-
-#tabla de freq, # de areas con involucramiento privado
-tabla_areas_privado <- datos_limpios %>%
-  tabyl(areas_ane) %>%
-  adorn_pct_formatting(digits = 1) %>%
-  rename("Cant de Areas con Privados" = areas_ane, "Paises" = n, "%" = percent)
-
-tabla_areas_privado
