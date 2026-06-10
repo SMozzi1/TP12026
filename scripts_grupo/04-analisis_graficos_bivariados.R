@@ -1,6 +1,7 @@
 #agrego paquetes
 library(tidyverse)
 library(ggplot2)
+library(gridExtra)
 
 # me traigo los datos
 attach(datos_limpios)
@@ -55,4 +56,44 @@ grafico_cat_cuant <- ggplot(datos_limpios) +
   theme_light()
 
 grafico_cat_cuant
+
+############################################################
+# mng vs sec_mng (los datos contra lo que dicen los medios)#
+############################################################
+
+grafico_paradoja <- ggplot(datos_limpios) +
+  aes(x = sec_mng, y = mng) +
+  geom_boxplot(fill = "lightblue", alpha = 0.7) +
+  labs(
+    x = "Nivel según fuentes secundarias (sec_mng)",
+    y = "Puntaje real (mng)"
+  ) +
+  ggtitle("La Paradoja: Percepción vs. Legislación Real") +
+  theme_light()
+
+grafico_paradoja
+
+
+
+# Armo los 3 diagramas de dispersión por separado
+
+g1 <- ggplot(datos_limpios) +
+  aes(x = mng, y = ag) +
+  geom_point(color = "darkblue", alpha = 0.6) +
+  labs(x = "Marcos Normativos", y = "Agencia Gubernamental") +
+  theme_light()
+
+g2 <- ggplot(datos_limpios) +
+  aes(x = mng, y = ane) +
+  geom_point(color = "darkgreen", alpha = 0.6) +
+  labs(x = "Marcos Normativos", y = "Actores No Estatales") +
+  theme_light()
+
+g3 <- ggplot(datos_limpios) +
+  aes(x = mng, y = GIRAI) +
+  geom_point(color = "darkred", alpha = 0.6) +
+  labs(x = "Marcos Normativos", y = "Éxito Global (GIRAI)") +
+  theme_light()
+
+grid.arrange(g1, g2, g3, ncol = 3, nrow = 1)
   

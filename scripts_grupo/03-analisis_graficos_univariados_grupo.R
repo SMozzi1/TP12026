@@ -6,18 +6,25 @@ library(ggplot2)
 attach(datos_limpios)
 
 
-################################################################
-# Grafico de barra dist. paises por cont. (categorico nominal) #
-################################################################
-grafico_poblacion <- ggplot(datos_limpios, 
-                            aes(y = fct_infreq(NU_region)))+
-  geom_bar(fill = "red", color = "black", alpha = 0.8)+
-  theme_minimal()+
-  labs(
-    title = "Distribucion de cantidad de paises por continente",
-    x = "Cantidad de paises",
-    y = "Region continental"
-  )
+#####################################
+#Grafico de barras porcentaje paises#
+#####################################
+
+datos_limpios %>%
+  
+  ggplot() + 
+  # Ordenamos las regiones por frecuencia y pedimos que calcule el porcentaje
+  aes(x = reorder(NU_region, NU_region, function(x) -length(x)), 
+      y = ..count.. / sum(..count..)) + 
+  scale_y_continuous(labels = scales::percent) +    
+  geom_bar(width = 0.75, 
+           fill = "steelblue", 
+           col = "black", 
+           alpha = 0.8) + 
+  labs(x = "Región Geográfica", 
+       y = "Porcentaje de países en la muestra") +
+  ggtitle("Distribución de la muestra por región") +
+  theme_classic()
 
 
 #############################################
@@ -81,16 +88,29 @@ grafico_discreta <- ggplot(datos_limpios) +
 # Histograma para indice de marco normativo # (cuantitativo continuo)
 #############################################
 
-grafico_continua <- ggplot(datos_limpios) +
+# Calculamos la mediana primero
+mediana_mng <- median(datos_limpios$mng, na.rm = TRUE)
+
+# Armamos el histograma
+ggplot(datos_limpios) +
   aes(x = mng) +
-  # Usamos breaks en el histograma para forzar cajones cada 10 puntos
-  geom_histogram(fill = "gray", col = "black", breaks = seq(0, 100, 10)) +
-  # Obligamos al eje X a mostrar un numerito cada 10 puntos exactos
-  scale_x_continuous(breaks = seq(0, 100, 10)) +
-  labs(x = "Índice de Marcos Normativos Gubernamentales (mng) (0-100)", 
-       y = "Cantidad de países en la muestra") +
+  geom_histogram(fill = "lightgray", col = "black", 
+                 breaks = seq(0, 100, 10)) + 
+  scale_x_continuous(breaks = seq(0, 100, 10)) + 
+  
+  
+  geom_vline(xintercept = mediana_mng, color = "red", 
+             linetype = "dashed", size = 1) +
+  
+  
+  annotate("text", x = mediana_mng + 12, y = 20, 
+           label = paste("Mediana:", round(mediana_mng, 1)), 
+           color = "red", fontface = "bold") +
+  
+  labs(x = "Índice de Marcos Normativos (mng)", 
+       y = "Cantidad de países") +
   theme_classic()
 
-grafico_continua
 
-grafico_continua
+
+
