@@ -81,12 +81,16 @@ grafico_discreta <- ggplot(datos_limpios) +
 # Histograma para indice de marco normativo # (cuantitativo continuo)
 #############################################
 
-grafico_continua <- ggplot(datos_limpios)+
-  aes(x = mng)+
-  geom_histogram(fill = "gray", col = "black", bins = 10)+
-  labs(
-    x = "Puntaje de Marcos Normativos (0-100)",
-    y = "Cantidad de paises")+
-  ggtitle("Distribucion de los puntajes de los Marcos Nacionales 
-    Gubernamentales con respecto al uso responsable de la IA")+
+grafico_continua <- ggplot(datos_limpios) +
+  aes(x = mng) +
+  # Usamos breaks en el histograma para forzar cajones cada 10 puntos
+  geom_histogram(fill = "gray", col = "black", breaks = seq(0, 100, 10)) +
+  # Obligamos al eje X a mostrar un numerito cada 10 puntos exactos
+  scale_x_continuous(breaks = seq(0, 100, 10)) +
+  labs(x = "Índice de Marcos Normativos Gubernamentales (mng) (0-100)", 
+       y = "Cantidad de países en la muestra") +
   theme_classic()
+
+grafico_continua
+
+grafico_continua
